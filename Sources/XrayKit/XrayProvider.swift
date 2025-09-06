@@ -1,7 +1,7 @@
 // Created by Denis Mandych on 06.09.2025
 
 import Foundation
-import Xray
+@_implementationOnly import Xray
 
 public protocol XrayProviderLogger {
     func logMessage(_ message: String?)
