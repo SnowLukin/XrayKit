@@ -15,12 +15,12 @@ let package = Package(
     targets: [
         .target(
             name: "XrayKit",
-            dependencies: ["Xray"]
+            dependencies: ["LibXray"]
         ),
         .binaryTarget(
-            name: "Xray",
-            url: "https://github.com/SnowLukin/XrayKit/releases/download/1.0.4/Xray.xcframework.zip",
-            checksum: "0527a41aa5975a620045bc36f6a516f2516b194fbf8d25eab4c701af076c9aea"
+            name: "LibXray",
+            url: "https://github.com/SnowLukin/XrayKit/releases/download/1.0.5/LibXray.xcframework.zip",
+            checksum: "d955ebd94570e5ac8e7e7bd0cde3440435c6557d18112b9d328366ccb0562d08"
         )
     ]
 )
