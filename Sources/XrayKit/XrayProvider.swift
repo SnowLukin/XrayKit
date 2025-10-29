@@ -8,11 +8,16 @@ public protocol XrayProviding: Actor {
     nonisolated var version: String { get }
 
     func start(config: Data, datDir: String) throws
+    func start(config: String, datDir: String) throws
     func stop() throws
 }
 
 public extension XrayProviding {
     func start(config: Data) throws {
+        try start(config: config, datDir: NSTemporaryDirectory())
+    }
+
+    func start(config: String) throws {
         try start(config: config, datDir: NSTemporaryDirectory())
     }
 }
@@ -50,7 +55,11 @@ public actor XrayProvider: XrayProviding {
             throw XrayError.callFailed(message: "Config is not UTF-8 JSON")
         }
 
-        let request = RunXrayFromJSONRequest(datDir: datDir, configJSON: jsonString)
+        try start(config: jsonString, datDir: datDir)
+    }
+
+    public func start(config: String, datDir: String) throws {
+        let request = RunXrayFromJSONRequest(datDir: datDir, configJSON: config)
         let encoded = try JSONEncoder().encode(request)
         let base64 = encoded.base64EncodedString()
 
